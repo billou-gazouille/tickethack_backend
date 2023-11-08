@@ -13,9 +13,19 @@ router.post('/addTrip', async (req, res) => {
     res.json({cart});
 });
 
+
 router.get('/trips', async (req, res) => {
     const cart = await TripInCart.find().populate("trip");
     res.json({cart});
 });
+
+
+router.delete('/', async (req, res) => {
+    const tripToDelete = req.body.tripId;
+    await TripInCart.deleteOne({trip: tripToDelete});
+    const cart = await TripInCart.find().populate("trip");
+    res.json({updatedCart: cart});
+});
+
 
 module.exports = router;
