@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var tripsRouter = require('./routes/trips');
+var cartRouter = require('./routes/cart');
 
 require('./database/connection');
 
@@ -22,5 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/trips', tripsRouter);
+app.use('/cart', cartRouter);
 
 module.exports = app;
